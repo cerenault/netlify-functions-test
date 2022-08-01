@@ -7,6 +7,7 @@ exports.handler = async (event: any, context: any) => {
 
     const httpLink = createHttpLink({
         uri: API_URI,
+        fetch,
     });
 
     const authLink = setContext((_, {headers}) => {
