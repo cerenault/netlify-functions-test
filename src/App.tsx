@@ -5,8 +5,8 @@ import axios from 'axios';
 
 function App() {
     const fetchData = async () => {
-        const res = await axios('/.netlify/functions/functionsTest');
-        console.log(res);
+        const res = await axios.get('/.netlify/functions/functionsTest');
+        console.log(res.data.message);
     };
 
     useEffect(() => {
