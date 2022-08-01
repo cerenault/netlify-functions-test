@@ -3,19 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {
-    ApolloClient,
-    InMemoryCache,
-    ApolloProvider,
-    gql,
-    createHttpLink,
-} from '@apollo/client';
+import {ApolloClient, InMemoryCache, gql, createHttpLink} from '@apollo/client';
 import {setContext} from '@apollo/client/link/context';
 
 const API_URI = process.env.REACT_APP_API_URI;
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-console.log('========> CREDENTIALS : ', API_KEY, API_URI);
 const httpLink = createHttpLink({
     uri: API_URI,
 });
@@ -37,7 +30,6 @@ const client = new ApolloClient({
     cache: new InMemoryCache(),
 });
 
-console.log('CLIENT : ', client);
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
