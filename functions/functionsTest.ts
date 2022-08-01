@@ -1,4 +1,5 @@
 import {fetchBrands} from '../graphql/query';
+import 'node-fetch';
 
 exports.handler = async (event: any, context: any) => {
     try {
