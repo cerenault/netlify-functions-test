@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {ApolloClient, InMemoryCache, gql, createHttpLink} from '@apollo/client';
+import {ApolloClient, InMemoryCache, createHttpLink} from '@apollo/client';
 import {setContext} from '@apollo/client/link/context';
 
 const API_URI = process.env.REACT_APP_API_URI;
@@ -25,7 +25,7 @@ const authLink = setContext((_, {headers}) => {
     };
 });
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
 });
@@ -33,28 +33,6 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
-
-exports.handler = async (event: any, context: any) => {
-    try {
-        client
-            .query({
-                query: gql`
-                    query {
-                        getAllBrands {
-                            name
-                        }
-                    }
-                `,
-            })
-            .then((e) => console.log('res : ', e));
-    } catch (e) {
-        console.log(e);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({error: 'Failed fetching'}),
-        };
-    }
-};
 
 root.render(
     <React.StrictMode>
