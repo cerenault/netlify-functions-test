@@ -3,7 +3,6 @@ import {fetchBrands} from '../graphql/query';
 exports.handler = async (event: any, context: any) => {
     try {
         const res = await fetchBrands();
-        const msg = res ? 'ok' : 'error';
         return {
             statusCode: 200,
             body: JSON.stringify({result: res}),
