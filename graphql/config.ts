@@ -1,5 +1,6 @@
 import {ApolloClient, InMemoryCache, createHttpLink} from '@apollo/client';
 import {setContext} from '@apollo/client/link/context';
+import {fetch} from 'cross-fetch';
 
 const API_URI = process.env.REACT_APP_API_URI;
 const API_KEY = process.env.REACT_APP_API_KEY;
