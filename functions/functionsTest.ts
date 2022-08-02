@@ -1,4 +1,5 @@
-import {gql, ApolloClient, InMemoryCache} from '@apollo/client';
+import {gql, ApolloClient, HttpLink, InMemoryCache} from '@apollo/client';
+import fetch from 'cross-fetch';
 
 // const brandsHandler: Handler = async (event, context) => {
 exports.handler = async (event, context) => {
@@ -7,7 +8,7 @@ exports.handler = async (event, context) => {
     try {
         /**************** WITH APOLLO CLIENT ****************/
         const client = new ApolloClient({
-            uri: apiUri,
+            link: new HttpLink({uri: apiUri, fetch}),
             cache: new InMemoryCache(),
             headers: {
                 authorization: apiKey ? apiKey : '',
