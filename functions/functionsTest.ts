@@ -4,14 +4,17 @@ import fetch from 'cross-fetch';
 // const brandsHandler: Handler = async (event, context) => {
 exports.handler = async (event, context) => {
     const apiUri = process.env.REACT_APP_API_URI;
-    const apiKey = process.env.REACT_APP_API_KEY;
+    const apiKey = process.env.REACT_APP_API_KEY
+        ? process.env.REACT_APP_API_KEY
+        : '';
+    console.log('API KEY : ', apiKey);
     try {
         /**************** WITH APOLLO CLIENT ****************/
         const client = new ApolloClient({
             link: new HttpLink({uri: apiUri, fetch}),
             cache: new InMemoryCache(),
             headers: {
-                authorization: apiKey ? apiKey : '',
+                authorization: apiKey,
             },
         });
         const results = await client.query({
