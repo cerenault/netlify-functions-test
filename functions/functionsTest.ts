@@ -4,6 +4,8 @@ import fetch from 'cross-fetch';
 
 // const brandsHandler: Handler = async (event, context) => {
 exports.handler = async (event, context) => {
+    console.log('----> EVENT : ', event);
+    console.log('----> CONTEXT : ', context);
     try {
         const API_URI = process.env.REACT_APP_API_URI;
         const API_KEY = process.env.REACT_APP_API_KEY
