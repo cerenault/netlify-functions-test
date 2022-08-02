@@ -6,7 +6,11 @@ import axios from 'axios';
 function App() {
     const [message, setMessage] = useState(null);
     const fetchData = async () => {
-        const res = await axios.get('/.netlify/functions/functionsTest');
+        const res = await axios.get('/.netlify/functions/functionsTest', {
+            data: {
+                foo: 'bar',
+            },
+        });
         console.log(res.data.message);
     };
 

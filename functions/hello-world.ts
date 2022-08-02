@@ -1,4 +1,4 @@
-exports.handler = async (event: any, context: any) => {
+exports.handler = async (event, context) => {
     try {
         console.error('Hello world function');
         return {
