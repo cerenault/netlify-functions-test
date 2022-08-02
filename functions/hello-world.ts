@@ -1,5 +1,6 @@
 exports.handler = async (event: any, context: any) => {
     try {
+        console.error('Hello world function');
         return {
             statusCode: 200,
             body: JSON.stringify({message: 'Hello world ! '}),
