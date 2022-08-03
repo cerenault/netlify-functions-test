@@ -6,8 +6,15 @@ import {client} from '../graphql/config';
 
 // const brandsHandler: Handler = async (event, context) => {
 exports.handler = async (event, context) => {
+    const URI_ORIGIN = process.env.REACT_APP_URI_ORIGIN;
     console.log('----> EVENT : ', event, 'BODY : ', event.body);
     console.log('----> CONTEXT : ', context);
+    if (event.headers['Origin'] !== URI_ORIGIN) {
+        return {
+            statusCode: 403,
+            body: JSON.stringify({error: 'Access forbidden'}),
+        };
+    }
     try {
         // const API_URI = process.env.REACT_APP_API_URI;
         const API_KEY = process.env.REACT_APP_API_KEY
@@ -40,6 +47,7 @@ exports.handler = async (event, context) => {
             query: gql`
                 query {
                     getAllBrands {
+                        id
                         name
                     }
                 }
@@ -48,7 +56,7 @@ exports.handler = async (event, context) => {
         console.log(results);
         return {
             statusCode: 200,
-            body: JSON.stringify({result: results}),
+            body: JSON.stringify({result: results?.data?.getAllBrands}),
         };
         /****************************************************/
 
