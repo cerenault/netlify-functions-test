@@ -2,3 +2,8 @@
 command = 'yarn build'
 functions = 'functions'
 publish = 'build'
+
+[[redirects]]
+from = "/hello"
+to = "/.netlify/functions/hello-world"
+status = 200

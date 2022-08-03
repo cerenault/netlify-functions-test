@@ -15,7 +15,7 @@ function App() {
     };
 
     const fetchHelloWorld = async () => {
-        const res = await axios.get('/.netlify/functions/hello-world');
+        const res = await axios.get('/hello');
         if (res?.data?.message) setMessage(res.data.message);
     };
 
