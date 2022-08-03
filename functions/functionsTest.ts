@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
     const URI_ORIGIN = process.env.REACT_APP_URI_ORIGIN;
     console.log('----> EVENT : ', event, 'BODY : ', event.body);
     console.log('----> CONTEXT : ', context);
-    if (event.headers['Referer'] !== URI_ORIGIN) {
+    if (event.headers['referer'] !== URI_ORIGIN) {
         return {
             statusCode: 403,
             body: JSON.stringify({error: 'Access forbidden'}),
