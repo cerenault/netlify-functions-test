@@ -12,6 +12,7 @@ exports.handler = async (event, context) => {
     console.log('----> EVENT : ', event, 'BODY : ', event.body);
     console.log('----> CONTEXT : ', context);
 
+    console.log('======> ORIGIN : ', event?.headers?.origin);
     /* TEST ACCESS CONTROL TOKEN HEADERS */
     if (event?.headers?.security !== TOKEN) {
         return {
