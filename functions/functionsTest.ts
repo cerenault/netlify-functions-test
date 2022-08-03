@@ -8,10 +8,19 @@ import {client} from '../graphql/config';
 
 // const brandsHandler: Handler = async (event, context) => {
 exports.handler = async (event, context) => {
+    const TOKEN = process.env.REACT_APP_FUN_TOKEN;
     console.log('----> EVENT : ', event, 'BODY : ', event.body);
     console.log('----> CONTEXT : ', context);
 
-    //Rate limiting
+    /* TEST ACCESS CONTROL TOKEN HEADERS */
+    if (event?.headers?.security !== TOKEN) {
+        return {
+            statusCode: 403,
+            body: JSON.stringify({error: 'Access Forbiden'}),
+        };
+    }
+
+    /* TEST RATE LIMITING */
     // if (accessHistory[event.headers['client-ip']] > Date.now() - 10 * 60 * 10) {
     //     return {
     //         statusCode: 429,

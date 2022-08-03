@@ -7,6 +7,9 @@ function App() {
     const [message, setMessage] = useState(null);
     const fetchData = async () => {
         const res = await axios.get('/.netlify/functions/functionsTest', {
+            headers: {
+                security: !process.env.REACT_APP_FUN_TOKEN,
+            },
             data: {
                 foo: 'bar',
             },
