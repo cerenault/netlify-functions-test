@@ -8,7 +8,7 @@ function App() {
     const fetchData = async () => {
         const res = await axios.get('/.netlify/functions/functionsTest', {
             headers: {
-                security: !process.env.REACT_APP_FUN_TOKEN,
+                security: process.env.REACT_APP_FUN_TOKEN as string,
             },
             data: {
                 foo: 'bar',
