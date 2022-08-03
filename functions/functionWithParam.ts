@@ -2,6 +2,13 @@ import {gql} from '@apollo/client';
 import {client} from '../graphql/config';
 
 exports.handler = async (event, context) => {
+    const URI_ORIGIN = process.env.REACT_APP_URI_ORIGIN;
+    if (event.headers['referer'] !== URI_ORIGIN) {
+        return {
+            statusCode: 403,
+            body: JSON.stringify({error: 'Access forbidden'}),
+        };
+    }
     try {
         const id = event.queryStringParameters.id;
         if (!id) {

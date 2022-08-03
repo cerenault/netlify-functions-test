@@ -4,17 +4,22 @@ import {gql} from '@apollo/client';
 import fetch from 'cross-fetch';
 import {client} from '../graphql/config';
 
+// const accessHistory = {};
+
 // const brandsHandler: Handler = async (event, context) => {
 exports.handler = async (event, context) => {
-    const URI_ORIGIN = process.env.REACT_APP_URI_ORIGIN;
     console.log('----> EVENT : ', event, 'BODY : ', event.body);
     console.log('----> CONTEXT : ', context);
-    if (event.headers['referer'] !== URI_ORIGIN) {
-        return {
-            statusCode: 403,
-            body: JSON.stringify({error: 'Access forbidden'}),
-        };
-    }
+
+    //Rate limiting
+    // if (accessHistory[event.headers['client-ip']] > Date.now() - 10 * 60 * 10) {
+    //     return {
+    //         statusCode: 429,
+    //         body: JSON.stringify({error: 'Rate limit exceeded'}),
+    //     };
+    // }
+    // accessHistory[event.headers['client-ip']] = Date.now();
+
     try {
         // const API_URI = process.env.REACT_APP_API_URI;
         const API_KEY = process.env.REACT_APP_API_KEY
